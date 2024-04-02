@@ -1,5 +1,6 @@
 import "./App.css";
 import { useEffect, useState } from "react";
+import Note from "./components/note/note";
 
 type Note = {
   id: number;
@@ -138,19 +139,14 @@ const App = () => {
           <button type="submit">Add Note</button>
         )}
       </form>
+
       <div className="notes-grid">
         {notes.map((note) => (
-          <div
-            className="note-item"
-            key={note.id}
-            onClick={() => handleNoteClick(note)}
-          >
-            <div className="notes-header">
-              <button onClick={(event) => deleteNote(event, note.id)}>x</button>
-            </div>
-            <h2>{note.title}</h2>
-            <p>{note.content}</p>
-          </div>
+          <Note
+            handleNoteCl={handleNoteClick}
+            delNote={deleteNote}
+            note={note}
+          />
         ))}
       </div>
     </div>
